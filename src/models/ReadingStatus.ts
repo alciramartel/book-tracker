@@ -1,0 +1,1 @@
+export type ReadingStatus = 'want' | 'reading' | 'read'
