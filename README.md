@@ -1,73 +1,77 @@
-# React + TypeScript + Vite
+# 📚 Book Tracker
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A personal book tracker to browse a catalog of books and manage your own reading list — built with React, TypeScript, and Vite.
 
-Currently, two official plugins are available:
+> **Status:** In active development. Building in public as part of my transition into design engineering.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+<!-- TODO: add a screenshot or GIF once the UI is further along.
+     Example: ![Book Tracker screenshot](./docs/preview.png) -->
 
-## React Compiler
+<!-- TODO: add the live demo link once deployed (Vercel / Netlify)
+**🔗 [Live Demo](https://your-deploy-url.com)** -->
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## About
 
-## Expanding the ESLint configuration
+Book Tracker lets you browse a curated catalog of books and build a personal library, marking each title as *want to read*, *reading*, or *read*. The project focuses on clean component architecture, type-safe state management, and a carefully designed UI.
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+This is a portfolio project where I'm applying both my frontend engineering background and a design-systems mindset: consistent spacing, deliberate visual hierarchy, and accessible color contrast.
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+## Features
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+- **Book catalog** — responsive grid of book cards with cover, title, author, and category tags
+- **Personal library** — add books and track their reading status
+- _(in progress)_ Filtering by reading status
+- _(planned)_ Persistent data via a lightweight backend
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+## Tech Stack
+
+- **React** — component-based UI
+- **TypeScript** — type-safe data models and props
+- **Vite** — build tooling and dev server
+- **CSS** — custom styling with a token-based approach (spacing scale, semantic colors)
+
+## Getting Started
+
+### Prerequisites
+
+- Node.js (LTS version)
+
+### Installation
+
+```bash
+# Clone the repository
+git clone https://github.com/alciramartel/book-tracker.git
+
+# Navigate into the project
+cd book-tracker
+
+# Install dependencies
+npm install
+
+# Start the development server
+npm run dev
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+Then open the local URL shown in your terminal (usually `http://localhost:5173`).
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+## Project Structure
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
 ```
+src/
+├── components/   # Reusable UI components (BookCard, ...)
+├── pages/        # Page-level components (BookCatalog, ...)
+├── models/       # TypeScript interfaces and types (Book, ...)
+├── mock/         # Local sample data
+└── ...
+```
+
+## What I'm practicing here
+
+- Lifting state up and managing shared state immutably
+- Type-safe modeling with TypeScript (interfaces, union types)
+- Responsive layouts with CSS Grid and Flexbox
+- Applying design fundamentals: 8-point spacing, typographic hierarchy, WCAG-aware contrast
+
+---
+
+Built by [Alcira Martel](https://github.com/alciramartel)
