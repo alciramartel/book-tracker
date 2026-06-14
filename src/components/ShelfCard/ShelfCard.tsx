@@ -1,22 +1,22 @@
-import type { Collection } from '../../models/Collection'
 import type { ReadingStatus } from '../../models/ReadingStatus'
+import type { ShelfItem } from '../../models/ShelfItem'
 import './ShelfCard.css'
 
 export interface ShelfCardProps {
-    collection: Collection
-    statusChanged: (status: ReadingStatus) => void
+    shelf: ShelfItem
+    onStatusChange: (status: ReadingStatus) => void
 }
 
-function ShelfCard({ collection, statusChanged }: ShelfCardProps) {
-    const { book, status } = collection
+function ShelfCard({ shelf, onStatusChange }: ShelfCardProps) {
+    const { book, status } = shelf
 
     return (
         <>
             <section className='bookshelf-card'>
                 <div className='img-container'>
-                    <div onClick={() => statusChanged('want')} className={`bookmark ${status === 'want' ? 'filled' : ''}`}></div>
-                    <div onClick={() => statusChanged('read')} className={`check ${status === 'read' ? 'filled' : ''}`}></div>
-                    <div onClick={() => statusChanged('reading')} className={`chip ${status === 'reading' ? 'filled' : ''}`}>Reading</div>
+                    <button role='button' onClick={() => onStatusChange('want')} className={`bookmark ${status === 'want' ? 'filled' : ''}`}></button>
+                    <button role='button' onClick={() => onStatusChange('read')} className={`check ${status === 'read' ? 'filled' : ''}`}></button>
+                    <button role='button' onClick={() => onStatusChange('reading')} className={`chip ${status === 'reading' ? 'filled' : ''}`}>Reading</button>
                     <div className='overlay'></div>
                     <img src={ book.cover } alt={book.title + ' cover'} draggable={false} /> 
                 </div>

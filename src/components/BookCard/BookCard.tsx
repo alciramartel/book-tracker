@@ -1,20 +1,20 @@
 import { type Book } from 'models/Book'
-import { type Collection } from 'models/Collection'
+import { type shelf } from 'src/models/ShelfItem'
 import './BookCard.css'
 
 interface BookCardProps {
   book: Book
-  collection: Collection[]
-  buttonClicked: (book: Book) => void
+  shelf: shelf[]
+  onAddBook: (book: Book) => void
 }
 
-function BookCard({ book, collection, buttonClicked }: BookCardProps) {
+function BookCard({ book, shelf, onAddBook }: BookCardProps) {
 
   // pop && <div style={{ position: 'absolute', top: -6, left: '50%', transform: 'translateX(-50%)', font: `900 18px ${G.sans}`, color: G.gold,
   //         textShadow: '0 2px 6px rgba(0,0,0,0.25)', animation: 'gpop .6s ease-out forwards', pointerEvents: 'none' }}>+{xpFor(book)} XP!</div>}
 
   function found(book: Book) {
-    return collection?.find(b => b.book.id == book.id)
+    return shelf?.find(b => b.book.id == book.id)
   }
 
   return (
@@ -27,8 +27,8 @@ function BookCard({ book, collection, buttonClicked }: BookCardProps) {
           { book.categories.slice(0, 2).map(c => <span key={c} className='chip'>{c}</span> ) }
         </div>
       </div>
-      <button role='button' className={ found(book) ? 'saved-btn btn' : 'add-btn btn' }  onClick={() => buttonClicked(book) }>
-        { found(book) ? 'In collection' : '+ Add to shelf' } 
+      <button role='button' className={ found(book) ? 'saved-btn btn' : 'add-btn btn' }  onClick={() => onAddBook(book) }>
+        { found(book) ? 'In shelf' : '+ Add to shelf' } 
       </button>
     </section>
   )

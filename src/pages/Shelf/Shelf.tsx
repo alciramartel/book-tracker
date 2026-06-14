@@ -1,20 +1,20 @@
 import ShelfCard from 'components/ShelfCard/ShelfCard'
-import type { Collection } from 'models/Collection'
 import type { ReadingStatus } from 'models/ReadingStatus'
+import type { ShelfItem } from 'src/models/ShelfItem'
 import './Shelf.css'
 
 export interface ShelfProps {
-    collection: Collection[]
-    statusChanged: (status: ReadingStatus, bookId: string) => void
+    shelf: ShelfItem[]
+    onStatusChange: (status: ReadingStatus, bookId: string) => void
 }
 
-function Shelf({ collection, statusChanged }: ShelfProps) {
+function Shelf({ shelf, onStatusChange }: ShelfProps) {
 
     return (
         <>
-            <h1>My Collection</h1>
-            <section className='collection'>
-            { collection.map(c => <ShelfCard key={c.book.id} collection={c} statusChanged={(status) => statusChanged(status, c.book.id)} /> ) }
+            <h1>My shelf</h1>
+            <section className='shelf'>
+            { shelf.map(c => <ShelfCard key={c.book.id} shelf={c} onStatusChange={(status) => onStatusChange(status, c.book.id)} /> ) }
             </section>
         </>
     )

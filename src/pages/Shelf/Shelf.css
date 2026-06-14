@@ -4,7 +4,7 @@ h1 {
     margin: 24px 0;
 }
 
-.collection {
+.shelf {
     display: grid;
     grid-template-columns: 1fr;
     justify-items: center;
@@ -16,13 +16,13 @@ h1 {
    2. TABLET BREAKPOINT (600px and up)
    ========================================================================== */
 @media (min-width: 600px) {
-    .collection {
+    .shelf {
         grid-template-columns: repeat(2, 1fr);
     }
 }
 
 @media (min-width: 950px) {
-    .collection {
+    .shelf {
         grid-template-columns: repeat(3, 1fr);
     }
 }
@@ -31,7 +31,7 @@ h1 {
    3. DESKTOP BREAKPOINT (1024px and up)
    ========================================================================== */
 @media (min-width: 1024px) {
-    .collection {
+    .shelf {
         grid-template-columns: repeat(4, 1fr);
     }
 }

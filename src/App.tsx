@@ -3,34 +3,34 @@ import BookCatalog from 'pages/BookCatalog/BookCatalog'
 import Shelf from 'pages/Shelf/Shelf'
 import { useState } from 'react'
 import './App.css'
-import type { Collection } from './models/Collection'
 import type { ReadingStatus } from './models/ReadingStatus'
+import type { ShelfItem } from './models/ShelfItem'
 
 function App() {
-  const  [collection, setCollection ]= useState<Collection[]>([])
+  const  [shelf, setShelf ]= useState<ShelfItem[]>([])
 
-  function updateBookCollection(book: Book) {
-    if (!collection.find(b => b.book.id === book.id)) {
+  function updateBookShelf(book: Book) {
+    if (!shelf.find(b => b.book.id === book.id)) {
       const newBook = {
         book,
         status: "want" as ReadingStatus
       }
-      setCollection([...collection, newBook])
+      setShelf([...shelf, newBook])
     } else {
-      const filteredList = collection.filter(b => b.book.id !== book.id)
-      setCollection(filteredList)
+      const filteredList = shelf.filter(b => b.book.id !== book.id)
+      setShelf(filteredList)
     }
   }
 
   function setStatus(status: ReadingStatus, bookId: string) {
-    const updatedCollection = collection.map(b => b.book.id === bookId ? { book: b.book, status } : { ...b })
-    setCollection(updatedCollection)
+    const updatedShelf = shelf.map(b => b.book.id === bookId ? { ...b, status } : b)
+    setShelf(updatedShelf)
   }
 
   return (
     <>
-      <BookCatalog collection={collection} buttonClicked={updateBookCollection} />
-      <Shelf collection={collection} statusChanged={setStatus} />
+      <BookCatalog shelf={shelf} onAddBook={updateBookShelf} />
+      <Shelf shelf={shelf} onStatusChange={setStatus} />
     </>
   )
 }

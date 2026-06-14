@@ -1,7 +1,7 @@
 import type { Book } from "./Book"
 import type { ReadingStatus } from "./ReadingStatus"
 
-export interface Collection {
+export interface ShelfItem {
     book: Book
     status: ReadingStatus
 }
