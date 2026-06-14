@@ -3,25 +3,34 @@ import BookCatalog from 'pages/BookCatalog/BookCatalog'
 import Shelf from 'pages/Shelf/Shelf'
 import { useState } from 'react'
 import './App.css'
+import type { Collection } from './models/Collection'
+import type { ReadingStatus } from './models/ReadingStatus'
 
 function App() {
-  const  [collection, setCollection ]= useState<Book[]>([])
+  const  [collection, setCollection ]= useState<Collection[]>([])
 
   function updateBookCollection(book: Book) {
-    console.log('Button clicked from child', book)
-    if (!collection.find(b => b.id === book.id)) {
-      setCollection([...collection, book])
+    if (!collection.find(b => b.book.id === book.id)) {
+      const newBook = {
+        book,
+        status: "want" as ReadingStatus
+      }
+      setCollection([...collection, newBook])
     } else {
-      const filteredList = collection.filter(b => b.id !== book.id)
+      const filteredList = collection.filter(b => b.book.id !== book.id)
       setCollection(filteredList)
     }
-    console.log(collection)
+  }
+
+  function setStatus(status: ReadingStatus, bookId: string) {
+    const updatedCollection = collection.map(b => b.book.id === bookId ? { book: b.book, status } : { ...b })
+    setCollection(updatedCollection)
   }
 
   return (
     <>
       <BookCatalog collection={collection} buttonClicked={updateBookCollection} />
-      <Shelf collection={collection} />
+      <Shelf collection={collection} statusChanged={setStatus} />
     </>
   )
 }

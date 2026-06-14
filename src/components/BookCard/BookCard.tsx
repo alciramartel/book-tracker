@@ -1,9 +1,10 @@
 import { type Book } from 'models/Book'
+import { type Collection } from 'models/Collection'
 import './BookCard.css'
 
 interface BookCardProps {
   book: Book
-  collection: Book[]
+  collection: Collection[]
   buttonClicked: (book: Book) => void
 }
 
@@ -13,13 +14,12 @@ function BookCard({ book, collection, buttonClicked }: BookCardProps) {
   //         textShadow: '0 2px 6px rgba(0,0,0,0.25)', animation: 'gpop .6s ease-out forwards', pointerEvents: 'none' }}>+{xpFor(book)} XP!</div>}
 
   function found(book: Book) {
-    console.log('found? ', collection)
-    return collection?.find(b => b.id == book.id)
+    return collection?.find(b => b.book.id == book.id)
   }
 
   return (
     <section className='book-card'>
-      <img src={ book.cover } alt='Book cover' draggable={false}/>
+      <img src={ book.cover } alt={book.title + ' cover'} draggable={false}/>
       <h4 className='book-title'>{ book.title }</h4>
       <div className='details'>
         <p>{ book.authors.join(', ') }</p>

@@ -1,0 +1,37 @@
+h1 {
+    font-weight: bold;
+    color: var(--font-primary);
+    margin: 24px 0;
+}
+
+.collection {
+    display: grid;
+    grid-template-columns: 1fr;
+    justify-items: center;
+    align-items: stretch;
+    gap: 24px;
+}
+
+/* ==========================================================================
+   2. TABLET BREAKPOINT (600px and up)
+   ========================================================================== */
+@media (min-width: 600px) {
+    .collection {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (min-width: 950px) {
+    .collection {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+/* ==========================================================================
+   3. DESKTOP BREAKPOINT (1024px and up)
+   ========================================================================== */
+@media (min-width: 1024px) {
+    .collection {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}

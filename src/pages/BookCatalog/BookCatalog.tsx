@@ -1,10 +1,11 @@
 import BookCard from 'components/BookCard/BookCard'
 import type { Book } from 'models/Book'
 import { BEST_SELLERS } from 'src/mock/Books'
+import type { Collection } from '../../models/Collection'
 import './BookCatalog.css'
 
 interface BookCatalogProps {
-    collection: Book[]
+    collection: Collection[]
     buttonClicked: (book: Book) => void
 }
 
