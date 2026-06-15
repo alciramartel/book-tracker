@@ -11,6 +11,7 @@ export default defineConfig({
       pages: "/src/pages",
       models: "/src/models",
       assets: "/src/assets",
+      layout: "/src/layout",
     },
   },
 })

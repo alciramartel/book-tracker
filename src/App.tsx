@@ -1,9 +1,9 @@
+import Nav from 'layout/Nav/Nav'
 import type { Book } from 'models/Book'
 import BookCatalog from 'pages/BookCatalog/BookCatalog'
 import Shelf from 'pages/Shelf/Shelf'
 import { useState } from 'react'
 import { Route, Routes } from "react-router"
-import Nav from 'src/layout/Nav/Nav'
 import './App.css'
 import type { ReadingStatus } from './models/ReadingStatus'
 import type { ShelfItem } from './models/ShelfItem'
