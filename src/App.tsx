@@ -2,9 +2,12 @@ import type { Book } from 'models/Book'
 import BookCatalog from 'pages/BookCatalog/BookCatalog'
 import Shelf from 'pages/Shelf/Shelf'
 import { useState } from 'react'
+import { Route, Routes } from "react-router"
+import Nav from 'src/layout/Nav/Nav'
 import './App.css'
 import type { ReadingStatus } from './models/ReadingStatus'
 import type { ShelfItem } from './models/ShelfItem'
+
 
 function App() {
   const  [shelf, setShelf ]= useState<ShelfItem[]>([])
@@ -29,8 +32,11 @@ function App() {
 
   return (
     <>
-      <BookCatalog shelf={shelf} onAddBook={updateBookShelf} />
-      <Shelf shelf={shelf} onStatusChange={setStatus} />
+      <Nav></Nav>
+      <Routes>
+        <Route path="/" element={<BookCatalog shelf={shelf} onAddBook={updateBookShelf} />} ></Route>
+        <Route path="shelf" element={<Shelf shelf={shelf} onStatusChange={setStatus} />} ></Route>
+      </Routes>
     </>
   )
 }
