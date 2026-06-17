@@ -5,7 +5,7 @@ import { createContext, useContext, useState, type ReactNode } from 'react';
 
 interface ShelfContextType {
     shelf: ShelfItem[]
-    updateBookshelf: (book: Book) => void
+    toggleBook: (book: Book) => void
     setStatus: (status: ReadingStatus, id: string) => void
 }
 
@@ -16,7 +16,7 @@ const ShelfContext = createContext<ShelfContextType | undefined>(undefined)
 export function ShelfProvider({ children }: { children: ReactNode }) {
     const [shelf, setShelf] = useState<ShelfItem[]>([])
 
-    function updateBookshelf(book: Book) {
+    function toggleBook(book: Book) {
         if (!shelf.find(b => b.book.id === book.id)) {
             const newBook = {
                 book,
@@ -36,7 +36,7 @@ export function ShelfProvider({ children }: { children: ReactNode }) {
 
     const contextValue = {
         shelf,
-        updateBookshelf,
+        toggleBook,
         setStatus
     }
 

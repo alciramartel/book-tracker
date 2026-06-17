@@ -8,7 +8,7 @@ interface BookCardProps {
 
 function BookCard({ book }: BookCardProps) {
 
-  const { shelf, updateBookshelf } = useShelf()
+  const { shelf, toggleBook } = useShelf()
 
   function found(book: Book) {
     return shelf?.find(b => b.book.id == book.id)
@@ -24,7 +24,7 @@ function BookCard({ book }: BookCardProps) {
           { book.categories.slice(0, 2).map(c => <span key={c} className='chip'>{c}</span> ) }
         </div>
       </div>
-      <button role='button' className={ found(book) ? 'saved-btn btn' : 'add-btn btn' }  onClick={() => updateBookshelf(book) }>
+      <button role='button' className={ found(book) ? 'saved-btn btn' : 'add-btn btn' }  onClick={() => toggleBook(book) }>
         { found(book) ? 'In shelf' : '+ Add to shelf' } 
       </button>
     </section>
