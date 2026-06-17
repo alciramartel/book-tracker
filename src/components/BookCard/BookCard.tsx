@@ -1,17 +1,14 @@
 import { type Book } from 'models/Book'
-import { type shelf } from 'src/models/ShelfItem'
+import { useShelf } from '../../context/ShelfContext'
 import './BookCard.css'
 
 interface BookCardProps {
   book: Book
-  shelf: shelf[]
-  onAddBook: (book: Book) => void
 }
 
-function BookCard({ book, shelf, onAddBook }: BookCardProps) {
+function BookCard({ book }: BookCardProps) {
 
-  // pop && <div style={{ position: 'absolute', top: -6, left: '50%', transform: 'translateX(-50%)', font: `900 18px ${G.sans}`, color: G.gold,
-  //         textShadow: '0 2px 6px rgba(0,0,0,0.25)', animation: 'gpop .6s ease-out forwards', pointerEvents: 'none' }}>+{xpFor(book)} XP!</div>}
+  const { shelf, updateBookshelf } = useShelf()
 
   function found(book: Book) {
     return shelf?.find(b => b.book.id == book.id)
@@ -27,7 +24,7 @@ function BookCard({ book, shelf, onAddBook }: BookCardProps) {
           { book.categories.slice(0, 2).map(c => <span key={c} className='chip'>{c}</span> ) }
         </div>
       </div>
-      <button role='button' className={ found(book) ? 'saved-btn btn' : 'add-btn btn' }  onClick={() => onAddBook(book) }>
+      <button role='button' className={ found(book) ? 'saved-btn btn' : 'add-btn btn' }  onClick={() => updateBookshelf(book) }>
         { found(book) ? 'In shelf' : '+ Add to shelf' } 
       </button>
     </section>

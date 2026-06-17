@@ -12,6 +12,7 @@ export default defineConfig({
       models: "/src/models",
       assets: "/src/assets",
       layout: "/src/layout",
+      context: "/src/context",
     },
   },
 })
